@@ -1,6 +1,7 @@
 import { Team } from './team';
 
 export interface TeamPositionProperties {
+  teamName: string;
   matchesPlayed: number;
   matchesWon: number;
   matchesDrawn: number;
@@ -9,10 +10,6 @@ export interface TeamPositionProperties {
   goalsAgainst: number;
   points: number;
 }
-
-const winingTeamPointsAward = 3;
-const drawnTeamsPointsAward = 1;
-const lostTeamPointsAward = 0;
 
 export class TeamPosition {
   private matchesPlayed: number;
@@ -35,6 +32,7 @@ export class TeamPosition {
 
   getTeamPositionProperties(): TeamPositionProperties {
     return {
+      teamName: this.team.getName(),
       matchesPlayed: this.matchesPlayed,
       matchesWon: this.matchesWon,
       matchesDrawn: this.matchesDrawn,
@@ -45,27 +43,27 @@ export class TeamPosition {
     };
   }
 
-  recordMatchWon(goalsFor: number, goalsAgainst: number) {
+  recordMatchWon(goalsFor: number, goalsAgainst: number, points: number) {
     this.matchesPlayed++;
     this.matchesWon++;
     this.goalsFor += goalsFor;
     this.goalsAgainst += goalsAgainst;
-    this.points += winingTeamPointsAward;
+    this.points += points;
   }
 
-  recordMatchDrawn(goals: number) {
+  recordMatchDrawn(goals: number, points: number) {
     this.matchesPlayed++;
     this.matchesDrawn++;
     this.goalsFor += goals;
     this.goalsAgainst += goals;
-    this.points += drawnTeamsPointsAward;
+    this.points += points;
   }
 
-  recordMatchLost(goalsFor: number, goalsAgainst: number) {
+  recordMatchLost(goalsFor: number, goalsAgainst: number, points: number) {
     this.matchesPlayed++;
     this.matchesLost++;
     this.goalsFor += goalsFor;
     this.goalsAgainst += goalsAgainst;
-    this.points += lostTeamPointsAward;
+    this.points += points;
   }
 }
