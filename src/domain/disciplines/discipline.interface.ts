@@ -1,5 +1,5 @@
 export interface DisciplineInterface {
-  getWonMatchPoints();
-  getDrawnMatchPoints();
-  getLostMatchPoints();
+  getWonMatchPoints(): number;
+  getDrawnMatchPoints(): number;
+  getLostMatchPoints(): number;
 }
